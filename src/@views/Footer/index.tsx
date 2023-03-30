@@ -13,9 +13,11 @@ const Footer = () => {
 export default Footer;
 
 export const FooterUI = styled.footer`
-  display: block;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   height: 5rem;
-  background-color: #fff;
   border-top: 0.1rem solid rgba(0, 0, 0, 0.05);
   border-bottom: 0.1rem solid rgba(0, 0, 0, 0.05);
   transition: 0.3s;
@@ -28,7 +30,7 @@ export const FooterUI = styled.footer`
     padding: 0;
     font-weight: 300;
     font-size: 1.4rem;
-    color: rgba(0, 0, 0, 0.4);
+    color: rgba(0, 0, 0, 0.2);
     text-align: center;
     a {
       display: inline-block;
