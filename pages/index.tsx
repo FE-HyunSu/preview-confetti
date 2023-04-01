@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import SetConfetti from "@views/SetConfetti";
 import styled from "styled-components";
+import { SketchPicker } from "react-color";
 
 const Index = () => {
   const backgroundRef = useRef<HTMLInputElement>(null);
@@ -31,6 +32,7 @@ const Index = () => {
         colors={["#fff000", "#ff0000", "#000"]}
         trigger={isTrigger}
       />
+      <SketchPicker />
     </>
   );
 };
@@ -39,12 +41,10 @@ export default Index;
 
 const OptionBox = styled.div`
   position: fixed;
-  top: 0;
-  right: 0;
-  bottom: calc(100% - 40rem);
-  left: calc(100% - 20rem);
-  width: 6rem;
-  height: 6rem;
+  top: 10rem;
+  right: 4rem;
+  width: 5rem;
+  height: 5rem;
   margin: auto;
   padding: 1rem;
   background-color: rgba(255, 255, 255, 0.7);
@@ -68,14 +68,11 @@ const OptionBox = styled.div`
     z-index: -1;
   }
   &.active {
+    top: calc(50% - 15rem);
+    right: calc(50% - 15rem);
     width: 30rem;
-    height: 40rem;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    padding: 12rem 2rem 2rem 2rem;
+    height: 30rem;
+    padding: 4rem 2rem 2rem 2rem;
     input {
       opacity: 1;
       z-index: 1;
@@ -85,8 +82,8 @@ const OptionBox = styled.div`
 
 const BtnScale = styled.button`
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -0.3rem;
+  right: 0.1rem;
   bottom: 0;
   left: 0;
   width: 5rem;
@@ -96,8 +93,8 @@ const BtnScale = styled.button`
   &:before {
     content: "";
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 0.1rem;
+    right: 0.2rem;
     bottom: 0;
     left: 0;
     width: 0.6rem;
