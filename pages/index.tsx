@@ -1,12 +1,28 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import SetConfetti from "@views/SetConfetti";
 import styled from "styled-components";
-import { SketchPicker } from "react-color";
+import { ChromePicker } from "react-color";
 
 const Index = () => {
   const backgroundRef = useRef<HTMLInputElement>(null);
   const [isTrigger, setTrigger] = useState<boolean>(true);
   const [isWindow, setWindow] = useState<boolean>(true);
+  const [color, setColor] = useState<string>("");
+  const handleColorChange = useCallback(
+    // 온체인지 이벤트를 담당할 함수다.
+    (color: string) => {
+      // 바뀌는 컬러값을 매개변수로 받아서
+      setColor(color); // setColor 안에 넣어줘서 color 를 변경해줄거다.
+    },
+    [color]
+  ); // 단 컬러 데이터가 바뀔때마다 이 함수는 갱신된다.
+  // useEffect(() => {
+  //   if (!label.color) {
+  //     // 받아온 레이블 컬러가 없으면
+  //     setColor(""); // 걍 빈칸
+  //   }
+  //   setColor(label.color); // 데이터가 있으면 컬러로 세팅
+  // }, [label]);
   return (
     <>
       <OptionBox className={isWindow ? `active` : ``}>
@@ -23,6 +39,15 @@ const Index = () => {
           ref={backgroundRef}
         />
         <input type="text" placeholder="test" />
+        <input
+          value={color}
+          onChange={(e) => handleColorChange(e.target.value)}
+        />
+
+        <ChromePicker
+          color={color}
+          onChange={(color) => handleColorChange(color.hex)}
+        />
         <BtnBase type="button" onClick={() => setTrigger(!isTrigger)}>
           효과 만들기
         </BtnBase>
@@ -32,7 +57,7 @@ const Index = () => {
         colors={["#fff000", "#ff0000", "#000"]}
         trigger={isTrigger}
       />
-      <SketchPicker />
+      {/* <SketchPicker /> */}
     </>
   );
 };

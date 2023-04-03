@@ -13,8 +13,11 @@ const SetConfetti = ({ bgColor, colors, trigger }: SetConfettiType) => {
     const confetti: any = new JSConfetti();
     confetti.addConfetti({
       particleCount: 100,
-      spread: 170,
-      origin: { y: 0.6 },
+      // spread: 360,
+      origin: { x: 0.5, y: 0.6 },
+      // startVelocity: 30,
+      spread: 25,
+      startVelocity: 55,
       confettiColors: colors,
     });
   }, [trigger]);
