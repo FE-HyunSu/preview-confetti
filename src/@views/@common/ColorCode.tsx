@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { ChromePicker } from "react-color";
+// import { ChromePicker } from "react-color";
 
 const ColorCode = () => {
   const [color, setColor] = useState<string>("");

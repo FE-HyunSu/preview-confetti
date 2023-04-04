@@ -1,12 +1,9 @@
-import React from "react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { RecoilRoot } from "recoil";
-import { ThemeProvider } from "styled-components";
-import { GlobalStyle } from "../src/styles/global-style";
-import { theme } from "../src/styles/theme";
-import Header from "@views/Header";
-import Footer from "@views/Footer";
+import { ThemeProvider } from "@emotion/react";
+import { media } from "@styles/theme";
+import GlobalStyle from "@styles/global-style";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
@@ -24,12 +21,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           <title>🎉 Confetti-Privew</title>
         </Head>
         <GlobalStyle />
-        <ThemeProvider theme={theme}>
-          <Header />
+        <ThemeProvider theme={media}>
           <main>
             <Component {...pageProps} />
           </main>
-          <Footer />
         </ThemeProvider>
       </RecoilRoot>
     </>

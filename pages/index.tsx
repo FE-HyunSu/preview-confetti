@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import SetConfetti from "@views/SetConfetti";
-import styled from "styled-components";
-import { ChromePicker } from "react-color";
+import styled from "@emotion/styled";
+// import { ChromePicker } from "react-color";
 
 const Index = () => {
   const backgroundRef = useRef<HTMLInputElement>(null);
@@ -44,10 +44,10 @@ const Index = () => {
           onChange={(e) => handleColorChange(e.target.value)}
         />
 
-        <ChromePicker
+        {/* <ChromePicker
           color={color}
           onChange={(color) => handleColorChange(color.hex)}
-        />
+        /> */}
         <BtnBase type="button" onClick={() => setTrigger(!isTrigger)}>
           효과 만들기
         </BtnBase>

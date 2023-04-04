@@ -1,4 +1,4 @@
-import { keyframes } from "styled-components";
+import { keyframes } from "@emotion/react";
 
 export const MotionTextView = keyframes`
   0%{transform:translateX(-2rem) scale(1, .1); opacity:0;}

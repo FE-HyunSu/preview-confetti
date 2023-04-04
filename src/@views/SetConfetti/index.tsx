@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import JSConfetti from "js-confetti";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 interface SetConfettiType {
   bgColor: string | undefined;
