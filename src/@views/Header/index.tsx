@@ -51,14 +51,8 @@ export const HeaderUI = styled.header`
     }
   }
   & + main {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-    width: 100%;
     min-height: calc(100vh - 10rem);
     padding-top: 5rem;
-    overflow: hidden;
     @supports (-webkit-appearance: none) and (stroke-color: transparent) {
       min-height: calc(100vh - 10rem);
     }

@@ -4,6 +4,8 @@ import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "@emotion/react";
 import { media } from "@styles/theme";
 import GlobalStyle from "@styles/global-style";
+import Header from "@views/Header";
+import Footer from "@views/Footer";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
@@ -22,9 +24,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         </Head>
         <GlobalStyle />
         <ThemeProvider theme={media}>
+          <Header />
           <main>
             <Component {...pageProps} />
           </main>
+          <Footer />
         </ThemeProvider>
       </RecoilRoot>
     </>

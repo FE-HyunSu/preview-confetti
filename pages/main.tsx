@@ -1,10 +1,10 @@
 import React from "react";
-import Intro from "@views/Intro";
+import SetConfetti from "@views/SetConfetti";
 
 const Index = () => {
   return (
     <>
-      <Intro />
+      <SetConfetti />
     </>
   );
 };
