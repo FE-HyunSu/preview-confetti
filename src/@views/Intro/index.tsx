@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "@emotion/styled";
-import SetConfetti from "@views/SetConfetti/SetConfettiBox";
+// import SetConfetti from "@views/SetConfetti/SetConfettiBox";
 import { useRouter } from "next/router";
 
 const Intro = () => {
@@ -25,11 +25,11 @@ const Intro = () => {
           시작하기
         </button>
       </IntroUI>
-      <SetConfetti
+      {/* <SetConfetti
         bgColor={!!backgroundRef.current ? backgroundRef.current.value : `#fff`}
         colors={["#fff000", "#ff0000", "#000"]}
         trigger={isTrigger}
-      />
+      /> */}
     </>
   );
 };

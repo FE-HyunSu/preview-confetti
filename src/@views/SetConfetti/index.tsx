@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import SetConfetti from "@views/SetConfetti/SetConfettiBox";
+// import SetConfetti from "@views/SetConfetti/SetConfettiBox";
 import styled from "@emotion/styled";
 // import { ChromePicker } from "react-color";
 
@@ -52,11 +52,11 @@ const SetConfettiBody = () => {
           효과 만들기
         </BtnBase>
       </OptionBox>
-      <SetConfetti
+      {/* <SetConfetti
         bgColor={!!backgroundRef.current ? backgroundRef.current.value : `#fff`}
         colors={["#fff000", "#ff0000", "#000"]}
         trigger={isTrigger}
-      />
+      /> */}
       {/* <SketchPicker /> */}
     </>
   );
