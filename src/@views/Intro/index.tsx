@@ -7,23 +7,22 @@ const Intro = () => {
   const backgroundRef = useRef<HTMLInputElement>(null);
   const [isTrigger, setTrigger] = useState<boolean>(true);
   const router = useRouter();
-  const nextPageAction = () => {
-    router.push("/main");
-  };
   useEffect(() => {
     setTrigger(true);
   }, []);
   return (
     <>
       <IntroUI>
-        <h1>CONFETTI REVIEW</h1>
         <ul>
           <li>안녕하세요</li>
+          <li>
+            <em>디자인팀</em>과 협업을 위한
+          </li>
           <li>CONFETTI 테스트 페이지 입니다.</li>
         </ul>
-        <button type="button" onClick={() => nextPageAction()}>
+        <Btn type="button" onClick={() => router.push("/main")}>
           시작하기
-        </button>
+        </Btn>
       </IntroUI>
       {/* <SetConfetti
         bgColor={!!backgroundRef.current ? backgroundRef.current.value : `#fff`}
@@ -42,4 +41,22 @@ const IntroUI = styled.section`
     font-size: 2rem;
     text-align: center;
   }
+  ul {
+    li {
+      font-weight: 200;
+      font-size: 2rem;
+      color: #333;
+      line-height: 1.4;
+      text-align: center;
+      em {
+        font-weight: 200;
+        color: #ff0000;
+      }
+    }
+  }
+`;
+
+const Btn = styled.button`
+  padding: 1rem;
+  background-color: #eee;
 `;
