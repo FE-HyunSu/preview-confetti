@@ -7,7 +7,7 @@ const Header = () => {
     <>
       <HeaderUI>
         <h1>
-          <Link href={"/"}>🎉 꽃가루를 날려</Link>
+          <Link href={"/"}>🎉 꽃가루를 날려 🎶</Link>
         </h1>
       </HeaderUI>
     </>
