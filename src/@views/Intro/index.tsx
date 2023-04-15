@@ -1,23 +1,18 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 import { BounceMotion, TextMotion } from '@styles/keyframe';
 import WelcomConfetti from './WelcomConfetti';
 
 const Intro = () => {
-  const backgroundRef = useRef<HTMLInputElement>(null);
-  const [isTrigger, setTrigger] = useState<boolean>(true);
   const router = useRouter();
-  useEffect(() => {
-    setTrigger(true);
-  }, []);
   const introContents = [
     `안녕하세요`,
     <>
       <em>디자인팀</em>과 협업을 위한
     </>,
     <>
-      <em>CONFETTI</em> 테스트 페이지 입니다.
+      <em>Canvas-Confetti</em> 테스트 페이지 입니다.
     </>,
     <>
       <BtnBlock type="button" onClick={() => router.push('/main')}>
@@ -66,14 +61,14 @@ const IntroUI = styled.section`
   ul {
     margin: 3rem auto;
     li {
-      font-weight: 200;
+      font-weight: 300;
       font-size: 2rem;
       color: #333;
       line-height: 1.4;
       text-align: center;
       animation: ${TextMotion} 1s both;
       em {
-        font-weight: 200;
+        font-weight: 300;
         color: #36f;
       }
     }

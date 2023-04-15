@@ -18,9 +18,9 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
     (color: string) => {
       setColor(color);
       if (inputColorRef.current) inputColorRef.current.value = color;
-      !!Number(color[1])
+      !!Number(color[1]) || Number(color[1]) === 0
         ? Number(color[1]) <= 6
-          ? setHeaderFontColor('#fff')
+          ? setHeaderFontColor('#ddd')
           : setHeaderFontColor('#1a1a1a')
         : setHeaderFontColor('#1a1a1a');
     },
@@ -29,6 +29,9 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
   useEffect(() => {
     handleColorChange('#FFFFFF');
   }, []);
+  useEffect(() => {
+    if (!isWindow) setColorSelectBoxView(false);
+  }, [isWindow]);
   return (
     <>
       <OptionBoxUI className={isWindow ? `active` : ``}>
@@ -36,7 +39,7 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
           최소화
         </BtnScale>
         <dl>
-          <dt>배경색</dt>
+          <dt>배경색을 선택해 주세요.</dt>
           <dd>
             <input
               type="text"
@@ -58,9 +61,9 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
             </ColorSelectBox>
           </dd>
         </dl>
-        <BtnBase type="button" onClick={() => handleColorChange(color)}>
+        <BtnBlock type="button" onClick={() => handleColorChange(color)}>
           효과 만들기
-        </BtnBase>
+        </BtnBlock>
       </OptionBoxUI>
     </>
   );
@@ -81,7 +84,7 @@ const OptionBoxUI = styled.div`
   border-radius: 1rem;
   box-sizing: border-box;
   transition: 0.3s;
-  // overflow: hidden;
+  overflow: hidden;
   input {
     width: 100%;
     padding: 0 1rem;
@@ -101,15 +104,20 @@ const OptionBoxUI = styled.div`
     width: 30rem;
     height: 30rem;
     padding: 4rem 2rem 2rem 2rem;
+    overflow: visible;
     input {
       opacity: 1;
       z-index: 1;
     }
+    dl {
+      opacity: 1;
+    }
   }
   dl {
+    opacity: 0;
     dt {
       padding: 0.8rem 0;
-      font-weight: 200;
+      font-weight: 300;
       font-size: 1.4rem;
       color: #000;
     }
@@ -166,18 +174,17 @@ const BtnScale = styled.button`
   }
 `;
 
-const BtnBase = styled.button`
-  width: 100%;
-  height: 4rem;
-  margin-top: 2rem;
-  font-size: 1.4rem;
+const BtnBlock = styled.button`
+  display: block;
+  min-width: 24rem;
+  margin: 3rem auto 0;
+  padding: 1.4rem;
   color: #fff;
-  background-color: #333;
+  background-color: #36f;
   border-radius: 0.4rem;
-  transition: 0.4s;
-  z-index: 2;
+  transition: 0.3s;
   &:hover {
-    background-color: #111;
+    background-color: #1c48d3;
   }
 `;
 

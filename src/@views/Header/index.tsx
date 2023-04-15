@@ -41,7 +41,7 @@ export const HeaderUI = styled.header`
     align-items: center;
     font-style: normal;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 1.4rem;
     color: #1a1a1a;
     transition: 0.3s;
