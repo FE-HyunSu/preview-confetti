@@ -12,8 +12,9 @@ const Intro = () => {
       <em>디자인팀</em>과 협업을 위한
     </>,
     <>
-      <em>Canvas-Confetti</em> 테스트 페이지 입니다.
+      <em>Canvas-Confetti Preview</em>
     </>,
+    `입니다.`,
     <>
       <BtnBlock type="button" onClick={() => router.push('/main')}>
         시작하기

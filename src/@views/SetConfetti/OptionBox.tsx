@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import Colorful from '@views/@common/Colorful';
 import { useRecoilState } from 'recoil';
 import { headerFontColorAtom } from '@store/store';
+import { MotionIntro } from '@styles/keyframe';
 
 interface OptionBoxT {
   color: string;
@@ -79,12 +80,13 @@ const OptionBoxUI = styled.div`
   height: 5rem;
   margin: auto;
   padding: 1rem;
-  background-color: rgba(255, 255, 255, 0.7);
-  border: 0.1rem solid #ccc;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 0.1rem solid #eee;
   border-radius: 1rem;
   box-sizing: border-box;
   transition: 0.3s;
   overflow: hidden;
+  animation: ${MotionIntro} 0.4s both;
   input {
     width: 100%;
     padding: 0 1rem;
@@ -104,6 +106,7 @@ const OptionBoxUI = styled.div`
     width: 30rem;
     height: 30rem;
     padding: 4rem 2rem 2rem 2rem;
+    background-color: rgba(255, 255, 255, 0.7);
     overflow: visible;
     input {
       opacity: 1;
@@ -176,7 +179,7 @@ const BtnScale = styled.button`
 
 const BtnBlock = styled.button`
   display: block;
-  min-width: 24rem;
+  min-width: 26rem;
   margin: 3rem auto 0;
   padding: 1.4rem;
   color: #fff;
