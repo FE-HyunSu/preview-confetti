@@ -1,9 +1,8 @@
 {
-  "editor.formatOnSave": true,
-  "prettier.semi": false,
-  "prettier.trailingComma": "all",
-  "prettier.singleQuote": true,
-  "prettier.tslintIntegration": true,
-  "prettier.tabWidth": 2,
-  "prettier.printWidth": 120
+  "semi": true,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "printWidth": 120,
+  "bracketSameLine": true,
+  "singleQuote": true
 }

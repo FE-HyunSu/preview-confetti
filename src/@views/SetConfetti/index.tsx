@@ -1,13 +1,14 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 // import SetConfetti from "@views/SetConfetti/SetConfettiBox";
-import styled from "@emotion/styled";
-// import { ChromePicker } from "react-color";
+import styled from '@emotion/styled';
+import { ChromePicker } from 'react-color';
+import Fireworks from './SetConfettiBox';
 
 const SetConfettiBody = () => {
   const backgroundRef = useRef<HTMLInputElement>(null);
   const [isTrigger, setTrigger] = useState<boolean>(true);
   const [isWindow, setWindow] = useState<boolean>(true);
-  const [color, setColor] = useState<string>("");
+  const [color, setColor] = useState<string>('');
   const handleColorChange = useCallback(
     // 온체인지 이벤트를 담당할 함수다.
     (color: string) => {
@@ -26,28 +27,17 @@ const SetConfettiBody = () => {
   return (
     <>
       <OptionBox className={isWindow ? `active` : ``}>
-        <BtnScale
-          type="button"
-          className={isWindow ? `active` : ``}
-          onClick={() => setWindow(!isWindow)}
-        >
+        <BtnScale type="button" className={isWindow ? `active` : ``} onClick={() => setWindow(!isWindow)}>
           최소화
         </BtnScale>
-        <input
-          type="text"
-          placeholder="배경색을 선택해 주세요."
-          ref={backgroundRef}
-        />
+        <input type="text" placeholder="배경색을 선택해 주세요." ref={backgroundRef} />
         <input type="text" placeholder="test" />
-        <input
-          value={color}
-          onChange={(e) => handleColorChange(e.target.value)}
-        />
+        <input value={color} onChange={(e) => handleColorChange(e.target.value)} />
 
-        {/* <ChromePicker
+        <ChromePicker
           color={color}
-          onChange={(color) => handleColorChange(color.hex)}
-        /> */}
+          // onChange={(color) => handleColorChange(color.hex)}
+        />
         <BtnBase type="button" onClick={() => setTrigger(!isTrigger)}>
           효과 만들기
         </BtnBase>
@@ -58,6 +48,7 @@ const SetConfettiBody = () => {
         trigger={isTrigger}
       /> */}
       {/* <SketchPicker /> */}
+      <Fireworks />
     </>
   );
 };
@@ -65,6 +56,9 @@ const SetConfettiBody = () => {
 export default SetConfettiBody;
 
 const OptionBox = styled.div`
+  // display:flex;
+  // justify-content:center;
+  // align-items:center;
   position: fixed;
   top: 10rem;
   right: 4rem;
@@ -96,7 +90,7 @@ const OptionBox = styled.div`
     top: calc(50% - 15rem);
     right: calc(50% - 15rem);
     width: 30rem;
-    height: 30rem;
+    height: 50rem;
     padding: 4rem 2rem 2rem 2rem;
     input {
       opacity: 1;
@@ -116,7 +110,7 @@ const BtnScale = styled.button`
   text-indent: -9999rem;
   z-index: 2;
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0.1rem;
     right: 0.2rem;

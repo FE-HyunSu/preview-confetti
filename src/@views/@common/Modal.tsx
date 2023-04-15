@@ -1,8 +1,8 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { PropsWithChildren } from "react";
-import styled from "@emotion/styled";
-import { MotionIntro } from "@styles/keyframe";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { PropsWithChildren } from 'react';
+import styled from '@emotion/styled';
+import { MotionIntro } from '@styles/keyframe';
 
 interface ModalProps {
   onClose: () => void;
@@ -17,7 +17,7 @@ const ModalContents = ({ children }: PropsWithChildren) => {
 };
 
 const Modal = (props: PropsWithChildren<ModalProps>) => {
-  const modalElement = document.getElementById("_modal");
+  const modalElement = document.getElementById('_modal');
   if (modalElement === null) {
     return <div></div>;
   } else {

@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
-import styled from "@emotion/styled";
-import { useRouter } from "next/router";
-import { BounceMotion, TextMotion } from "@styles/keyframe";
+import React, { useState, useEffect, useRef } from 'react';
+import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
+import { BounceMotion, TextMotion } from '@styles/keyframe';
+import WelcomConfetti from './WelcomConfetti';
 
 const Intro = () => {
   const backgroundRef = useRef<HTMLInputElement>(null);
@@ -19,7 +20,7 @@ const Intro = () => {
       <em>CONFETTI</em> 테스트 페이지 입니다.
     </>,
     <>
-      <BtnBlock type="button" onClick={() => router.push("/main")}>
+      <BtnBlock type="button" onClick={() => router.push('/main')}>
         시작하기
       </BtnBlock>
     </>,
@@ -31,13 +32,14 @@ const Intro = () => {
           <h1>🎉</h1>
           <ul>
             {introContents.map((item, idx) => (
-              <li key={idx} style={{ animationDelay: idx * 0.3 + `s` }}>
+              <li key={idx} style={{ animationDelay: (idx + 1) * 0.3 + `s` }}>
                 {item}
               </li>
             ))}
           </ul>
         </IntroUI>
       </FlexBox>
+      <WelcomConfetti />
     </>
   );
 };

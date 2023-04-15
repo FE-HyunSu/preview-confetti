@@ -1,5 +1,5 @@
-import React from "react";
-import SetConfetti from "@views/SetConfetti/SetConfettiBox";
+import React from 'react';
+import SetConfetti from '@views/SetConfetti';
 
 const Index = () => {
   return (

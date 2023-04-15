@@ -1,13 +1,13 @@
-import React from "react";
-import styled from "@emotion/styled";
-import Link from "next/link";
+import React from 'react';
+import styled from '@emotion/styled';
+import Link from 'next/link';
 
 const Header = () => {
   return (
     <>
       <HeaderUI>
         <h1>
-          <Link href={"/"}>🎉 꽃가루를 날려 🎶</Link>
+          <Link href={'/'}>🎉 꽃가루를 날려 🎶</Link>
         </h1>
       </HeaderUI>
     </>

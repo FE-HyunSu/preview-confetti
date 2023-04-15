@@ -1,12 +1,11 @@
-import { css, Global, SerializedStyles } from "@emotion/react";
-import emotionReset from "emotion-reset";
+import { css, Global, SerializedStyles } from '@emotion/react';
+import emotionReset from 'emotion-reset';
 
 const globalStyleSheet = (): SerializedStyles => css`
   ${emotionReset}
   html {
     -webkit-text-size-adjust: none;
-    font-family: -apple-system, BlinkMacSystemFont, helvetica,
-      Apple SD Gothic Neo, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, helvetica, Apple SD Gothic Neo, sans-serif;
     font-display: fallback;
     font-size: 10px;
     -ms-overflow-style: none;

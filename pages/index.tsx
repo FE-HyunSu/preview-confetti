@@ -1,5 +1,5 @@
-import React from "react";
-import Intro from "@views/Intro";
+import React from 'react';
+import Intro from '@views/Intro';
 
 const Index = () => {
   return (

@@ -25,6 +25,6 @@
       "@styles/*": ["src/styles/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/@views/Intro/WelcomConfetti.jsx"],
   "exclude": ["node_modules"]
 }

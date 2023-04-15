@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import ReactCanvasConfetti from 'react-canvas-confetti';
 
 function randomInRange(min, max) {
@@ -28,10 +28,8 @@ function getAnimationSettings(originXA, originXB) {
   };
 }
 
-// export default function Fireworks() {
-const Fireworks = () => {
+const WelcomConfetti = () => {
   const refAnimationInstance = useRef(null);
-  const [intervalId, setIntervalId] = useState();
 
   const getInstance = useCallback((instance) => {
     refAnimationInstance.current = instance;
@@ -44,43 +42,15 @@ const Fireworks = () => {
     }
   }, []);
 
-  const startAnimation = useCallback(() => {
-    if (!intervalId) {
-      setIntervalId(setInterval(nextTickAnimation, 400));
-    }
-  }, [intervalId, nextTickAnimation]);
-
-  const pauseAnimation = useCallback(() => {
-    clearInterval(intervalId);
-    setIntervalId(null);
-  }, [intervalId]);
-
-  const stopAnimation = useCallback(() => {
-    clearInterval(intervalId);
-    setIntervalId(null);
-    refAnimationInstance.current && refAnimationInstance.current.reset();
-  }, [intervalId]);
-
-  useEffect(() => {
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [intervalId]);
-
   useEffect(() => {
     nextTickAnimation();
   }, []);
 
   return (
     <>
-      <div>
-        <button onClick={startAnimation}>Start</button>
-        <button onClick={pauseAnimation}>Pause</button>
-        <button onClick={stopAnimation}>Stop</button>
-      </div>
       <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
     </>
   );
 };
 
-export default Fireworks;
+export default WelcomConfetti;

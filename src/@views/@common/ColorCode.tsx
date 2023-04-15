@@ -1,8 +1,8 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback } from 'react';
 // import { ChromePicker } from "react-color";
 
 const ColorCode = () => {
-  const [color, setColor] = useState<string>("");
+  const [color, setColor] = useState<string>('');
   const handleColorChange = useCallback(
     // 온체인지 이벤트를 담당할 함수다.
     (color: string) => {
