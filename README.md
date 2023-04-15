@@ -1,5 +1,7 @@
 ## 🎉 FlyTheFlowers (preview-confetti)
 
+(개발중..)
+
 ### 🧑‍💻 프로젝트 개요.
 
 - 디자인팀과의 협업을 위한 Canvas-Confetti Preview 페이지 입니다.
