@@ -1,29 +1,23 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-// import SetConfetti from "@views/SetConfetti/SetConfettiBox";
 import styled from '@emotion/styled';
-import { ChromePicker } from 'react-color';
-import Fireworks from './SetConfettiBox';
+import Colorful from '@views/@common/Colorful';
 
 const SetConfettiBody = () => {
   const backgroundRef = useRef<HTMLInputElement>(null);
+  const inputColorRef = useRef<HTMLInputElement>(null);
   const [isTrigger, setTrigger] = useState<boolean>(true);
   const [isWindow, setWindow] = useState<boolean>(true);
-  const [color, setColor] = useState<string>('');
+  const [color, setColor] = useState<string>('#fff');
   const handleColorChange = useCallback(
-    // 온체인지 이벤트를 담당할 함수다.
     (color: string) => {
-      // 바뀌는 컬러값을 매개변수로 받아서
-      setColor(color); // setColor 안에 넣어줘서 color 를 변경해줄거다.
+      setColor(color);
+      if (inputColorRef.current) inputColorRef.current.value = color;
     },
     [color]
-  ); // 단 컬러 데이터가 바뀔때마다 이 함수는 갱신된다.
-  // useEffect(() => {
-  //   if (!label.color) {
-  //     // 받아온 레이블 컬러가 없으면
-  //     setColor(""); // 걍 빈칸
-  //   }
-  //   setColor(label.color); // 데이터가 있으면 컬러로 세팅
-  // }, [label]);
+  );
+  useEffect(() => {
+    handleColorChange('#fff');
+  }, []);
   return (
     <>
       <OptionBox className={isWindow ? `active` : ``}>
@@ -31,24 +25,16 @@ const SetConfettiBody = () => {
           최소화
         </BtnScale>
         <input type="text" placeholder="배경색을 선택해 주세요." ref={backgroundRef} />
-        <input type="text" placeholder="test" />
-        <input value={color} onChange={(e) => handleColorChange(e.target.value)} />
-
-        <ChromePicker
-          color={color}
-          // onChange={(color) => handleColorChange(color.hex)}
+        <input
+          type="text"
+          ref={inputColorRef}
+          onChange={() => (inputColorRef.current ? handleColorChange(inputColorRef.current.value) : null)}
         />
-        <BtnBase type="button" onClick={() => setTrigger(!isTrigger)}>
+        <Colorful colorCode={color} handleColorChange={handleColorChange} />
+        <BtnBase type="button" onClick={() => handleColorChange(color)}>
           효과 만들기
         </BtnBase>
       </OptionBox>
-      {/* <SetConfetti
-        bgColor={!!backgroundRef.current ? backgroundRef.current.value : `#fff`}
-        colors={["#fff000", "#ff0000", "#000"]}
-        trigger={isTrigger}
-      /> */}
-      {/* <SketchPicker /> */}
-      <Fireworks />
     </>
   );
 };
