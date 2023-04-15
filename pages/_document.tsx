@@ -10,7 +10,7 @@ class MyDocument extends Document {
           <meta property="og:title" content="Confetti-Privew" />
           <meta property="og:image" content="/images/img_meta.png" />
           <meta property="og:description" content="Confetti-Privew" />
-          <meta property="og:url" content="https://kb-order.vercel.app" />
+          <meta property="og:url" content="https://flytheflowers.vercel.app" />
           <meta name="description" content="Confetti-Privew" />
           <meta name="keywords" content="Confetti-Privew" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
