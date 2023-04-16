@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import ReactCanvasConfetti from 'react-canvas-confetti';
 
-function randomInRange(min, max) {
+const randomInRange = (min, max) => {
   return Math.random() * (max - min) + min;
-}
+};
 
 const canvasStyles = {
   position: 'fixed',
@@ -14,7 +14,7 @@ const canvasStyles = {
   left: 0,
 };
 
-function getAnimationSettings(originXA, originXB) {
+const getAnimationSettings = (originXA, originXB) => {
   return {
     startVelocity: 30,
     spread: 360,
@@ -26,7 +26,7 @@ function getAnimationSettings(originXA, originXB) {
       y: Math.random() - 0.2,
     },
   };
-}
+};
 
 const WelcomConfetti = () => {
   const refAnimationInstance = useRef(null);

@@ -55,12 +55,15 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
               색상박스
             </BtnColorPad>
             <ColorSelectBox className={isColorSelectBoxView ? `active` : ``}>
-              <BtnClose type="button" onClick={() => setColorSelectBoxView(false)}>
-                닫기
-              </BtnClose>
+              <p>{color}</p>
+              <BtnSelect type="button" onClick={() => setColorSelectBoxView(false)}>
+                선택
+              </BtnSelect>
               <Colorful colorCode={color} handleColorChange={handleColorChange} />
             </ColorSelectBox>
           </dd>
+          <dt>꽃가루 색상</dt>
+          <dd></dd>
         </dl>
         <BtnBlock type="button" onClick={() => handleColorChange(color)}>
           효과 만들기
@@ -127,6 +130,9 @@ const OptionBoxUI = styled.div`
     dd {
       display: flex;
       position: relative;
+      & + dt {
+        padding-top: 2rem;
+      }
     }
   }
 `;
@@ -196,46 +202,26 @@ const ColorSelectBox = styled.div`
   position: absolute;
   top: calc(100% + 1rem);
   right: 0;
-  padding: 4rem 2rem 2rem 2rem;
+  padding: 2rem;
   border: 0.1rem solid #ddd;
   background-color: #fff;
   border-radius: 0.8rem;
+  p {
+    padding: 0 1rem 1rem 0.5rem;
+    font-size: 1.2rem;
+    color: #999;
+  }
   &.active {
     display: block;
   }
 `;
 
-const BtnClose = styled.button`
+const BtnSelect = styled.button`
   position: absolute;
   top: 1rem;
-  right: 2rem;
-  width: 2rem;
-  height: 2rem;
-  text-indent: -999rem;
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 1.4rem;
-    height: 0.1rem;
-    margin: auto;
-    background-color: #111;
-    transform: rotate(45deg);
-  }
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 1.4rem;
-    height: 0.1rem;
-    margin: auto;
-    background-color: #111;
-    transform: rotate(-45deg);
-  }
+  right: 1rem;
+  padding: 1rem 1.2rem;
+  font-size: 1.2rem;
+  color: #1a1a1a;
+  background-color: #fff;
 `;
