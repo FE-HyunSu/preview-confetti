@@ -230,6 +230,7 @@ const ColorSelectBox = styled.div`
   border: 0.1rem solid #ddd;
   background-color: #fff;
   border-radius: 0.8rem;
+  z-index: 10;
   p {
     padding: 0 1rem 1rem 0.5rem;
     font-size: 1.2rem;
