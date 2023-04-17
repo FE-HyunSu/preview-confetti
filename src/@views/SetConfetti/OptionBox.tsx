@@ -13,8 +13,10 @@ interface OptionBoxT {
 const OptionBox = ({ color, setColor }: OptionBoxT) => {
   const [isHeaderFontColor, setHeaderFontColor] = useRecoilState(headerFontColorAtom);
   const inputColorRef = useRef<HTMLInputElement>(null);
+  const colorItemsRef = useRef<HTMLUListElement>(null);
   const [isWindow, setWindow] = useState<boolean>(true);
   const [isColorSelectBoxView, setColorSelectBoxView] = useState<boolean>(false);
+  const [itemColors, setItemColors] = useState<any>(null);
   const handleColorChange = useCallback(
     (color: string) => {
       setColor(color);
@@ -27,6 +29,7 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
     },
     [color]
   );
+  const itemColorss = [`#fff000`, `#ff0000`, `999`];
   useEffect(() => {
     handleColorChange('#FFFFFF');
   }, []);
@@ -63,7 +66,18 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
             </ColorSelectBox>
           </dd>
           <dt>꽃가루 색상</dt>
-          <dd></dd>
+          <dd>
+            <ul ref={colorItemsRef}>
+              {itemColorss &&
+                itemColorss.map((item: string, idx: number) => (
+                  <li key={idx}>
+                    <BtnColorPad type="button" style={{ backgroundColor: item }}>
+                      색상박스
+                    </BtnColorPad>
+                  </li>
+                ))}
+            </ul>
+          </dd>
         </dl>
         <BtnBlock type="button" onClick={() => handleColorChange(color)}>
           효과 만들기
@@ -132,6 +146,16 @@ const OptionBoxUI = styled.div`
       position: relative;
       & + dt {
         padding-top: 2rem;
+      }
+      ul {
+        display: flex;
+        li {
+          &:first-child {
+            button {
+              margin-left: 0;
+            }
+          }
+        }
       }
     }
   }
