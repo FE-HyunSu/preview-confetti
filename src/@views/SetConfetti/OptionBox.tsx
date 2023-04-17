@@ -4,6 +4,7 @@ import Colorful from '@views/@common/Colorful';
 import { useRecoilState } from 'recoil';
 import { headerFontColorAtom } from '@store/store';
 import { MotionIntro } from '@styles/keyframe';
+import ColorBox from './ColorBox';
 
 interface OptionBoxT {
   color: string;
@@ -14,9 +15,12 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
   const [isHeaderFontColor, setHeaderFontColor] = useRecoilState(headerFontColorAtom);
   const inputColorRef = useRef<HTMLInputElement>(null);
   const colorItemsRef = useRef<HTMLUListElement>(null);
+  const inputColorItemRef = useRef<HTMLInputElement>(null);
   const [isWindow, setWindow] = useState<boolean>(true);
   const [isColorSelectBoxView, setColorSelectBoxView] = useState<boolean>(false);
-  const [itemColors, setItemColors] = useState<any>(null);
+  const [isColorSelectBoxView2, setColorSelectBoxView2] = useState<boolean>(false);
+  const [itemColors, setItemColors] = useState<any>([`#fff000`, `#ff0000`, `#999`]);
+  const [selectColor, setSelectColor] = useState<string>('#fff');
   const handleColorChange = useCallback(
     (color: string) => {
       setColor(color);
@@ -29,9 +33,15 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
     },
     [color]
   );
-  const itemColorss = [`#fff000`, `#ff0000`, `999`];
+  const handleColorChange2 = useCallback(
+    (color: string) => {
+      setSelectColor(color);
+      if (inputColorItemRef.current) inputColorItemRef.current.value = color;
+    },
+    [color]
+  );
   useEffect(() => {
-    handleColorChange('#FFFFFF');
+    handleColorChange('#ffffff');
   }, []);
   useEffect(() => {
     if (!isWindow) setColorSelectBoxView(false);
@@ -45,18 +55,18 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
         <dl>
           <dt>배경색을 선택해 주세요.</dt>
           <dd>
-            <input
-              type="text"
-              ref={inputColorRef}
-              maxLength={7}
-              onChange={() => (inputColorRef.current ? handleColorChange(inputColorRef.current.value) : null)}
-            />
             <BtnColorPad
               type="button"
               style={{ backgroundColor: color }}
               onClick={() => setColorSelectBoxView(!isColorSelectBoxView)}>
               색상박스
             </BtnColorPad>
+            <input
+              type="text"
+              ref={inputColorRef}
+              maxLength={7}
+              onChange={() => (inputColorRef.current ? handleColorChange(inputColorRef.current.value) : null)}
+            />
             <ColorSelectBox className={isColorSelectBoxView ? `active` : ``}>
               <p>{color}</p>
               <BtnSelect type="button" onClick={() => setColorSelectBoxView(false)}>
@@ -68,15 +78,18 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
           <dt>꽃가루 색상</dt>
           <dd>
             <ul ref={colorItemsRef}>
-              {itemColorss &&
-                itemColorss.map((item: string, idx: number) => (
+              {itemColors &&
+                itemColors.map((item: string, idx: number) => (
                   <li key={idx}>
-                    <BtnColorPad type="button" style={{ backgroundColor: item }}>
-                      색상박스
-                    </BtnColorPad>
+                    <BtnColorItem type="button" style={{ backgroundColor: item }}>
+                      아이템 색상
+                    </BtnColorItem>
                   </li>
                 ))}
             </ul>
+          </dd>
+          <dd>
+            <ColorBox color={`#ffffff`} colorIdx={2} setColor={console.log(color)} isWindow={isWindow} />
           </dd>
         </dl>
         <BtnBlock type="button" onClick={() => handleColorChange(color)}>
@@ -106,14 +119,13 @@ const OptionBoxUI = styled.div`
   animation: ${MotionIntro} 0.4s both;
   input {
     width: 100%;
+    height: 3.6rem;
     padding: 0 1rem;
     box-sizing: border-box;
     background-color: #fff;
     border-radius: 0.4rem;
     border: 0.1rem solid #eee;
     outline: 0;
-  }
-  input {
     opacity: 0;
     z-index: -1;
   }
@@ -121,7 +133,7 @@ const OptionBoxUI = styled.div`
     top: calc(50% - 15rem);
     right: calc(50% - 15rem);
     width: 30rem;
-    height: 30rem;
+    height: 33rem;
     padding: 4rem 2rem 2rem 2rem;
     background-color: rgba(255, 255, 255, 0.7);
     overflow: visible;
@@ -147,6 +159,9 @@ const OptionBoxUI = styled.div`
       & + dt {
         padding-top: 2rem;
       }
+      & + dd {
+        padding-top: 0.8rem;
+      }
       ul {
         display: flex;
         li {
@@ -166,11 +181,21 @@ const BtnColorPad = styled.button`
   flex-shrink: 0;
   width: 3.6rem;
   height: 3.6rem;
-  margin-left: 0.5rem;
-  background-color: #eee;
+  margin-right: 0.5rem;
   text-indent: -9999rem;
   border: 0.1rem solid #eee;
   border-radius: 0.4rem;
+`;
+
+const BtnColorItem = styled.button`
+  flex: auto;
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.5rem;
+  text-indent: -9999rem;
+  border: 0.1rem solid #eee;
+  border-radius: 100%;
 `;
 
 const BtnScale = styled.button`
