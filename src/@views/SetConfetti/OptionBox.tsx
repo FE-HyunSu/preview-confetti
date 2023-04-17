@@ -15,12 +15,9 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
   const [isHeaderFontColor, setHeaderFontColor] = useRecoilState(headerFontColorAtom);
   const inputColorRef = useRef<HTMLInputElement>(null);
   const colorItemsRef = useRef<HTMLUListElement>(null);
-  const inputColorItemRef = useRef<HTMLInputElement>(null);
   const [isWindow, setWindow] = useState<boolean>(true);
   const [isColorSelectBoxView, setColorSelectBoxView] = useState<boolean>(false);
-  const [isColorSelectBoxView2, setColorSelectBoxView2] = useState<boolean>(false);
   const [itemColors, setItemColors] = useState<any>([`#fff000`, `#ff0000`, `#999`]);
-  const [selectColor, setSelectColor] = useState<string>('#fff');
   const handleColorChange = useCallback(
     (color: string) => {
       setColor(color);
@@ -30,13 +27,6 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
           ? setHeaderFontColor('#ddd')
           : setHeaderFontColor('#1a1a1a')
         : setHeaderFontColor('#1a1a1a');
-    },
-    [color]
-  );
-  const handleColorChange2 = useCallback(
-    (color: string) => {
-      setSelectColor(color);
-      if (inputColorItemRef.current) inputColorItemRef.current.value = color;
     },
     [color]
   );
