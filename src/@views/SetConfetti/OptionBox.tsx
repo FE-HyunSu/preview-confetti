@@ -5,6 +5,7 @@ import { useRecoilState } from 'recoil';
 import { headerFontColorAtom } from '@store/store';
 import { MotionIntro } from '@styles/keyframe';
 import ColorBox from './ColorBox';
+import CustomConfetti from '@views/Intro/CustomConfetti';
 
 interface OptionBoxT {
   color: string;
@@ -18,6 +19,7 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
   const [isWindow, setWindow] = useState<boolean>(true);
   const [isColorSelectBoxView, setColorSelectBoxView] = useState<boolean>(false);
   const [itemColors, setItemColors] = useState<string[]>([]);
+  const [isAction, setAction] = useState<boolean>(false);
   const handleColorChange = useCallback(
     (color: string) => {
       setColor(color);
@@ -30,6 +32,9 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
     },
     [color]
   );
+  const ConfettiAction = (colors: any) => {
+    if (colors.length > 0) setAction(!isAction);
+  };
   useEffect(() => {
     handleColorChange('#ffffff');
   }, []);
@@ -82,10 +87,11 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
             <ColorBox isWindow={isWindow} itemColors={itemColors} setItemColors={setItemColors} />
           </dd>
         </dl>
-        <BtnBlock type="button" onClick={() => handleColorChange(color)}>
+        <BtnBlock type="button" onClick={() => ConfettiAction(itemColors)}>
           효과 만들기
         </BtnBlock>
       </OptionBoxUI>
+      {itemColors.length > 0 ? <CustomConfetti colors={itemColors} toggleItem={isAction} /> : null}
     </>
   );
 };
@@ -155,7 +161,7 @@ const OptionBoxUI = styled.div`
       ul {
         display: flex;
         li {
-          &:first-child {
+          &:first-of-type {
             button {
               margin-left: 0;
             }
