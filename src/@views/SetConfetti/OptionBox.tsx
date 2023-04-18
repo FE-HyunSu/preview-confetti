@@ -7,6 +7,7 @@ import { MotionIntro } from '@styles/keyframe';
 import ColorBox from './ColorBox';
 import CustomConfetti from '@views/Intro/CustomConfetti';
 import { produce } from 'immer';
+import CopyText from './CopyText';
 
 interface OptionBoxT {
   color: string;
@@ -98,6 +99,7 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
         <BtnBlock type="button" onClick={() => ConfettiAction(itemColors)}>
           효과 만들기
         </BtnBlock>
+        <CopyText colors={itemColors} />
       </OptionBoxUI>
       {itemColors.length > 0 ? <CustomConfetti colors={itemColors} toggleItem={isAction} /> : null}
     </>
@@ -135,7 +137,7 @@ const OptionBoxUI = styled.div`
   }
   &.active {
     width: 30rem;
-    height: 33rem;
+    height: 52rem;
     padding: 4rem 2rem 2rem 2rem;
     background-color: rgba(255, 255, 255, 0.7);
     overflow: visible;
