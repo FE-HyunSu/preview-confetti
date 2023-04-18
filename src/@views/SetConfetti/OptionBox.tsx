@@ -79,7 +79,7 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
               <Colorful colorCode={color} handleColorChange={handleColorChange} />
             </ColorSelectBox>
           </dd>
-          <dt>꽃가루 색상</dt>
+          <dt>꽃가루 색상 - 다중선택가능</dt>
           <dd>
             <ul ref={colorItemsRef}>
               {itemColors &&
