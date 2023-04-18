@@ -96,8 +96,8 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
             <ColorBox isWindow={isWindow} itemColors={itemColors} setItemColors={setItemColors} />
           </dd>
         </dl>
-        <BtnBlock type="button" onClick={() => ConfettiAction(itemColors)}>
-          효과 만들기
+        <BtnBlock className={!isWindow ? `active` : ``} type="button" onClick={() => ConfettiAction(itemColors)}>
+          꽃가루 날리기
         </BtnBlock>
         <CopyText colors={itemColors} />
       </OptionBoxUI>
@@ -113,7 +113,7 @@ const OptionBoxUI = styled.div`
   top: 10rem;
   right: 4rem;
   width: 5rem;
-  height: 5rem;
+  height: 10rem;
   margin: auto;
   padding: 1rem;
   background-color: rgba(255, 255, 255, 0.2);
@@ -289,6 +289,26 @@ const BtnBlock = styled.button`
   transition: 0.3s;
   &:hover {
     background-color: #1c48d3;
+  }
+  &.active {
+    position: absolute;
+    top: 2rem;
+    width: 2.8rem;
+    min-width: 2.8rem;
+    height: 3rem;
+    box-sizing: border-box;
+    text-indent: -9999rem;
+    &:before {
+      content: '🎉';
+      position: absolute;
+      top: 0.6rem;
+      right: 0;
+      left: 0;
+      margin: auto;
+      text-indent: 0;
+      line-height: 1;
+      font-size: 1.8rem;
+    }
   }
 `;
 

@@ -22,7 +22,7 @@ const CopyText = ({ colors }: colorsT) => {
   return (
     <>
       <CodeCopyBox>
-        <h1>개발팀에 전달 코드</h1>
+        <h1>개발팀에 아래 코드를 전달해 주세요.</h1>
         <pre>
           {codes.map((item, idx) => (
             <p key={idx}>{item}</p>
@@ -46,7 +46,8 @@ const CodeCopyBox = styled.div`
     padding: 1.4rem;
     font-weight: 300;
     font-size: 1.2rem;
-    background-color: #ccc;
+    background-color: #eee;
+    border: 0.1rem solid #ccc;
     border-radius: 0.4rem;
     white-space: pre-wrap;
     p {
