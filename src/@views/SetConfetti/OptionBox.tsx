@@ -17,7 +17,7 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
   const colorItemsRef = useRef<HTMLUListElement>(null);
   const [isWindow, setWindow] = useState<boolean>(true);
   const [isColorSelectBoxView, setColorSelectBoxView] = useState<boolean>(false);
-  const [itemColors, setItemColors] = useState<any>([`#fff000`, `#ff0000`, `#999`]);
+  const [itemColors, setItemColors] = useState<string[]>([]);
   const handleColorChange = useCallback(
     (color: string) => {
       setColor(color);
@@ -79,7 +79,7 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
             </ul>
           </dd>
           <dd>
-            <ColorBox color={`#ffffff`} colorIdx={2} setColor={console.log(color)} isWindow={isWindow} />
+            <ColorBox isWindow={isWindow} itemColors={itemColors} setItemColors={setItemColors} />
           </dd>
         </dl>
         <BtnBlock type="button" onClick={() => handleColorChange(color)}>
@@ -180,12 +180,51 @@ const BtnColorPad = styled.button`
 const BtnColorItem = styled.button`
   flex: auto;
   flex-shrink: 0;
+  position: relative;
   width: 2rem;
   height: 2rem;
   margin-right: 0.5rem;
   text-indent: -9999rem;
   border: 0.1rem solid #eee;
   border-radius: 100%;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 0.8rem;
+    height: 0.1rem;
+    margin: auto;
+    background-color: transparent;
+    transform: rotate(0deg);
+    transition: 0.3s;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 0.8rem;
+    height: 0.1rem;
+    margin: auto;
+    background-color: transparent;
+    transform: rotate(90deg);
+    transition: 0.3s;
+  }
+  &:hover {
+    &:before {
+      background-color: #000;
+      transform: rotate(45deg);
+    }
+    &:after {
+      background-color: #000;
+      transform: rotate(-45deg);
+    }
+  }
 `;
 
 const BtnScale = styled.button`

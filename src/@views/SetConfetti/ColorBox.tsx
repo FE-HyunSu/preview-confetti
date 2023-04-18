@@ -1,16 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from '@emotion/styled';
 import Colorful from '@views/@common/Colorful';
+import { produce } from 'immer';
 
 interface OptionBoxT {
-  color: string;
-  colorIdx: number;
-  setColor: any;
   isWindow: boolean;
+  itemColors: string[];
+  setItemColors: any;
 }
 
-const ColorBox = ({ color, colorIdx, setColor, isWindow }: OptionBoxT) => {
-  const inputColorRef = useRef<HTMLInputElement>(null);
+const ColorBox = ({ isWindow, itemColors, setItemColors }: OptionBoxT) => {
   const inputColorItemRef = useRef<HTMLInputElement>(null);
   const [isColorSelectBoxView, setColorSelectBoxView] = useState<boolean>(false);
   const [selectColor, setSelectColor] = useState<string>('#fff');
@@ -18,6 +17,13 @@ const ColorBox = ({ color, colorIdx, setColor, isWindow }: OptionBoxT) => {
   const handleColorChange = (color: string) => {
     setSelectColor(color);
     if (inputColorItemRef.current) inputColorItemRef.current.value = color;
+  };
+  const itemColorAdd = (colorCode: string) => {
+    const colorGroups = produce(itemColors, (draft) => {
+      draft.push(colorCode);
+    });
+    setItemColors(colorGroups);
+    setColorSelectBoxView(false);
   };
   useEffect(() => {
     handleColorChange('#ffffff');
@@ -40,10 +46,12 @@ const ColorBox = ({ color, colorIdx, setColor, isWindow }: OptionBoxT) => {
           maxLength={7}
           onChange={() => (inputColorItemRef.current ? handleColorChange(inputColorItemRef.current.value) : null)}
         />
-        <BtnApply type="button">추가</BtnApply>
+        <BtnApply type="button" onClick={() => itemColorAdd(selectColor)}>
+          추가
+        </BtnApply>
         <ColorSelectBox className={isColorSelectBoxView ? `active` : ``}>
           <p>{selectColor}</p>
-          <BtnSelect type="button" onClick={() => setColorSelectBoxView(false)}>
+          <BtnSelect type="button" onClick={() => itemColorAdd(selectColor)}>
             선택
           </BtnSelect>
           <Colorful colorCode={selectColor} handleColorChange={handleColorChange} />
