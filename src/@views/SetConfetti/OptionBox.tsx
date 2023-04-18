@@ -6,6 +6,7 @@ import { headerFontColorAtom } from '@store/store';
 import { MotionIntro } from '@styles/keyframe';
 import ColorBox from './ColorBox';
 import CustomConfetti from '@views/Intro/CustomConfetti';
+import { produce } from 'immer';
 
 interface OptionBoxT {
   color: string;
@@ -34,6 +35,13 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
   );
   const ConfettiAction = (colors: any) => {
     if (colors.length > 0) setAction(!isAction);
+  };
+  const removeColorItem = (idx: number) => {
+    const colorGroups = produce(itemColors, (draft) => {
+      draft.splice(idx, 1);
+    });
+    setItemColors(colorGroups);
+    setColorSelectBoxView(false);
   };
   useEffect(() => {
     handleColorChange('#ffffff');
@@ -76,7 +84,7 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
               {itemColors &&
                 itemColors.map((item: string, idx: number) => (
                   <li key={idx}>
-                    <BtnColorItem type="button" style={{ backgroundColor: item }}>
+                    <BtnColorItem type="button" style={{ backgroundColor: item }} onClick={() => removeColorItem(idx)}>
                       아이템 색상
                     </BtnColorItem>
                   </li>
@@ -126,13 +134,12 @@ const OptionBoxUI = styled.div`
     z-index: -1;
   }
   &.active {
-    top: calc(50% - 15rem);
-    right: calc(50% - 15rem);
     width: 30rem;
     height: 33rem;
     padding: 4rem 2rem 2rem 2rem;
     background-color: rgba(255, 255, 255, 0.7);
     overflow: visible;
+    z-index: 2;
     input {
       opacity: 1;
       z-index: 1;
@@ -160,6 +167,8 @@ const OptionBoxUI = styled.div`
       }
       ul {
         display: flex;
+        width: 26rem;
+        flex-wrap: wrap;
         li {
           &:first-of-type {
             button {

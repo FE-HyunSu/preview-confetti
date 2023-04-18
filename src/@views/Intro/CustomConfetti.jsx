@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import ReactCanvasConfetti from 'react-canvas-confetti';
 
 const canvasStyles = {
@@ -26,15 +26,15 @@ const getAnimationSettings = (colors) => {
 
 const CustomConfetti = ({ colors, toggleItem }) => {
   const refAnimationInstance = useRef(null);
-  const getInstance = useCallback((instance) => {
+  const getInstance = (instance) => {
     refAnimationInstance.current = instance;
-  }, []);
+  };
 
-  const nextTickAnimation = useCallback(() => {
+  const nextTickAnimation = () => {
     if (refAnimationInstance.current) {
       refAnimationInstance.current(getAnimationSettings(colors));
     }
-  }, []);
+  };
 
   useEffect(() => {
     nextTickAnimation(colors);

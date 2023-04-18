@@ -12,7 +12,7 @@ interface OptionBoxT {
 const ColorBox = ({ isWindow, itemColors, setItemColors }: OptionBoxT) => {
   const inputColorItemRef = useRef<HTMLInputElement>(null);
   const [isColorSelectBoxView, setColorSelectBoxView] = useState<boolean>(false);
-  const [selectColor, setSelectColor] = useState<string>('#fff');
+  const [selectColor, setSelectColor] = useState<string>('#ffffff');
 
   const handleColorChange = (color: string) => {
     setSelectColor(color);
@@ -22,6 +22,7 @@ const ColorBox = ({ isWindow, itemColors, setItemColors }: OptionBoxT) => {
     const colorGroups = produce(itemColors, (draft) => {
       draft.push(colorCode);
     });
+    console.log(colorGroups);
     setItemColors(colorGroups);
     setColorSelectBoxView(false);
   };
@@ -88,7 +89,7 @@ const ColorSelectBox = styled.div`
   border: 0.1rem solid #ddd;
   background-color: #fff;
   border-radius: 0.8rem;
-  z-index: 10;
+  z-index: 20;
   p {
     padding: 0 1rem 1rem 0.5rem;
     font-size: 1.2rem;
