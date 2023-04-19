@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 import { BounceMotion, TextMotion } from '@styles/keyframe';
 import WelcomConfetti from './WelcomConfetti';
+import ImgLogo from '@images/img_logo.png';
+import Image from 'next/image';
 
 const Intro = () => {
   const router = useRouter();
@@ -25,7 +27,9 @@ const Intro = () => {
     <>
       <FlexBox>
         <IntroUI>
-          <h1>🎉</h1>
+          <h1>
+            <Image src={ImgLogo} width={120} height={120} alt={`LOGO`} placeholder={`blur`} />
+          </h1>
           <ul>
             {introContents.map((item, idx) => (
               <li key={idx} style={{ animationDelay: (idx + 1) * 0.3 + `s` }}>
@@ -60,7 +64,7 @@ const IntroUI = styled.section`
     animation: ${BounceMotion} 2s infinite;
   }
   ul {
-    margin: 3rem auto;
+    margin: 1rem auto 3rem;
     li {
       font-weight: 300;
       font-size: 2rem;
