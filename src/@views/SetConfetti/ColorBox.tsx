@@ -22,7 +22,6 @@ const ColorBox = ({ isWindow, itemColors, setItemColors }: OptionBoxT) => {
     const colorGroups = produce(itemColors, (draft) => {
       draft.push(colorCode);
     });
-    console.log(colorGroups);
     setItemColors(colorGroups);
     setColorSelectBoxView(false);
   };
