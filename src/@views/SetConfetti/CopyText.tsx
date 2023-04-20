@@ -6,7 +6,7 @@ interface colorsT {
 }
 
 const CopyText = ({ colors }: colorsT) => {
-  const colorCodes = JSON.stringify(colors);
+  const colorCodes = JSON.stringify(colors).replaceAll(',', ', ');
   const codes = [
     `confetti({`,
     `  particleCount: 100,`,

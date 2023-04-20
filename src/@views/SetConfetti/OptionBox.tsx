@@ -12,9 +12,10 @@ import CopyText from './CopyText';
 interface OptionBoxT {
   color: string;
   setColor: any;
+  setImageItem: any;
 }
 
-const OptionBox = ({ color, setColor }: OptionBoxT) => {
+const OptionBox = ({ color, setColor, setImageItem }: OptionBoxT) => {
   const [isHeaderFontColor, setHeaderFontColor] = useRecoilState(headerFontColorAtom);
   const inputColorRef = useRef<HTMLInputElement>(null);
   const colorItemsRef = useRef<HTMLUListElement>(null);
@@ -22,6 +23,7 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
   const [isColorSelectBoxView, setColorSelectBoxView] = useState<boolean>(false);
   const [itemColors, setItemColors] = useState<string[]>([]);
   const [isAction, setAction] = useState<boolean>(false);
+  const fileBoxRef = useRef<HTMLInputElement>(null);
   const handleColorChange = useCallback(
     (color: string) => {
       setColor(color);
@@ -44,6 +46,11 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
     setItemColors(colorGroups);
     setColorSelectBoxView(false);
   };
+  const imageSet = (imageItem: any) => {
+    const imageURL = imageItem.current;
+    console.log(imageURL);
+    // setImageItem(imageURL);
+  };
   useEffect(() => {
     handleColorChange('#ffffff');
   }, []);
@@ -62,7 +69,7 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
           최소화
         </BtnScale>
         <dl>
-          <dt>배경색을 선택해 주세요.</dt>
+          <dt>🎨 배경색을 선택해 주세요.</dt>
           <dd>
             <BtnColorPad
               type="button"
@@ -84,7 +91,14 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
               <Colorful colorCode={color} handleColorChange={handleColorChange} />
             </ColorSelectBox>
           </dd>
-          <dt>꽃가루 색상 - 다중선택가능</dt>
+          {/* <dt>🖼 배경 이미지를 선택해 주세요</dt>
+          <dd>
+            <input type="file" ref={fileBoxRef} />
+            <button type="button" onClick={() => imageSet(fileBoxRef)}>
+              체크
+            </button>
+          </dd> */}
+          <dt>🎉 꽃가루 색상 - 다중선택가능</dt>
           <dd>
             <ul ref={colorItemsRef}>
               {itemColors &&
@@ -115,7 +129,7 @@ export default OptionBox;
 
 const OptionBoxUI = styled.div`
   position: fixed;
-  top: 10rem;
+  top: 9rem;
   right: 4rem;
   width: 5rem;
   height: 10rem;
@@ -128,7 +142,7 @@ const OptionBoxUI = styled.div`
   transition: 0.3s;
   overflow: hidden;
   animation: ${MotionIntro} 0.4s both;
-  input {
+  input[type='text'] {
     width: 100%;
     height: 3.6rem;
     padding: 0 1rem;
@@ -145,7 +159,7 @@ const OptionBoxUI = styled.div`
     height: 52rem;
     padding: 4rem 2rem 2rem 2rem;
     background-color: rgba(255, 255, 255, 0.7);
-    overflow: visible;
+    overflow: auto;
     z-index: 2;
     input {
       opacity: 1;
