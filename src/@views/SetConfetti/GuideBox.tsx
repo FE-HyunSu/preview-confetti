@@ -5,7 +5,7 @@ import { headerFontColorAtom } from '@store/store';
 
 const GuideBox = () => {
   const headerColor = useRecoilValue(headerFontColorAtom);
-  const [isDisplay, setDisplay] = useState<boolean>(false);
+  const [isDisplay, setDisplay] = useState<boolean>(true);
   return (
     <>
       <GuideUI fontColor={headerColor}>
