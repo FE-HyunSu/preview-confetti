@@ -50,10 +50,15 @@ const OptionBox = ({ color, setColor }: OptionBoxT) => {
   useEffect(() => {
     if (!isWindow) setColorSelectBoxView(false);
   }, [isWindow]);
+
   return (
     <>
       <OptionBoxUI className={isWindow ? `active` : ``}>
-        <BtnScale type="button" className={isWindow ? `active` : ``} onClick={() => setWindow(!isWindow)}>
+        <BtnScale
+          type="button"
+          className={isWindow ? `active` : ``}
+          fontColor={isHeaderFontColor}
+          onClick={() => setWindow(!isWindow)}>
           최소화
         </BtnScale>
         <dl>
@@ -244,7 +249,7 @@ const BtnColorItem = styled.button`
   }
 `;
 
-const BtnScale = styled.button`
+const BtnScale = styled.button<{ fontColor: string }>`
   position: absolute;
   top: -0.3rem;
   right: 0.1rem;
@@ -264,15 +269,17 @@ const BtnScale = styled.button`
     width: 0.6rem;
     height: 0.6rem;
     margin: auto;
-    border-right: 0.1rem solid #333;
-    border-bottom: 0.1rem solid #333;
+    border-right: 0.1rem solid ${(props) => props.fontColor};
+    border-bottom: 0.1rem solid ${(props) => props.fontColor};
     transform: rotate(45deg);
-    transition: 0.3s;
+    transition: 0.2s;
   }
   &.active {
     bottom: auto;
     left: auto;
     &:before {
+      border-right: 0.1rem solid #1a1a1a;
+      border-bottom: 0.1rem solid #1a1a1a;
       transform: rotate(-135deg);
     }
   }
