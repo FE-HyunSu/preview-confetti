@@ -91,13 +91,14 @@ const OptionBox = ({ color, setColor, setImageItem }: OptionBoxT) => {
               <Colorful colorCode={color} handleColorChange={handleColorChange} />
             </ColorSelectBox>
           </dd>
-          {/* <dt>🖼 배경 이미지를 선택해 주세요</dt>
+          <dt>🖼 배경 이미지를 선택해 주세요</dt>
           <dd>
-            <input type="file" ref={fileBoxRef} />
+            (개발중 입니다.)
+            {/* <input type="file" ref={fileBoxRef} />
             <button type="button" onClick={() => imageSet(fileBoxRef)}>
               체크
-            </button>
-          </dd> */}
+            </button> */}
+          </dd>
           <dt>🎉 꽃가루 색상 - 다중선택가능</dt>
           <dd>
             <ul ref={colorItemsRef}>

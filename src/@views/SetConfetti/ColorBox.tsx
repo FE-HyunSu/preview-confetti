@@ -6,7 +6,7 @@ import { produce } from 'immer';
 interface OptionBoxT {
   isWindow: boolean;
   itemColors: string[];
-  setItemColors: (item: string) => void;
+  setItemColors: (item: string[]) => void;
 }
 
 const ColorBox = ({ isWindow, itemColors, setItemColors }: OptionBoxT) => {
