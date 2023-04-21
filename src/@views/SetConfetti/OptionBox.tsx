@@ -11,8 +11,8 @@ import CopyText from './CopyText';
 
 interface OptionBoxT {
   color: string;
-  setColor: any;
-  setImageItem: any;
+  setColor: (item: string) => void;
+  setImageItem: (item: string) => void;
 }
 
 const OptionBox = ({ color, setColor, setImageItem }: OptionBoxT) => {
@@ -36,7 +36,7 @@ const OptionBox = ({ color, setColor, setImageItem }: OptionBoxT) => {
     },
     [color]
   );
-  const ConfettiAction = (colors: any) => {
+  const ConfettiAction = (colors: string[]) => {
     if (colors.length > 0) setAction(!isAction);
   };
   const removeColorItem = (idx: number) => {
@@ -49,7 +49,7 @@ const OptionBox = ({ color, setColor, setImageItem }: OptionBoxT) => {
   const imageSet = (imageItem: any) => {
     const imageURL = imageItem.current;
     console.log(imageURL);
-    // setImageItem(imageURL);
+    setImageItem(imageURL);
   };
   useEffect(() => {
     handleColorChange('#ffffff');

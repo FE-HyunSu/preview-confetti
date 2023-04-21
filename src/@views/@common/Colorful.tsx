@@ -3,7 +3,7 @@ import { HexColorPicker } from 'react-colorful';
 
 interface colorCodeT {
   colorCode: string;
-  handleColorChange: any;
+  handleColorChange: (item: string) => void;
 }
 
 const Colorful = ({ colorCode, handleColorChange }: colorCodeT) => {
