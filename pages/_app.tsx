@@ -13,11 +13,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <RecoilRoot>
         <Head>
           <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
-          <meta property="og:title" content="Confetti-Privew" />
-          <meta property="og:description" content="Confetti-Privew" />
+          <meta property="og:title" content="꽃가루를 날려" />
+          <meta property="og:description" content="개발-디자인 협업용 Confetti-Privew" />
           <meta property="og:image" content="/images/img_meta.png" />
           <link rel="icon" href="/favicon.ico" />
-          <title>🎉 Confetti-Privew</title>
+          <title>🎉 꽃가루를 날려</title>
         </Head>
         <GlobalStyle />
         <ThemeProvider theme={media}>
