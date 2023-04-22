@@ -14,7 +14,7 @@
 
 ### 🪬 Keyword.
 
-- `React` `Nextjs` `Typescript` `Recoil` `colorful` `emotion` `immer` `vercel`
+- `React` `Nextjs` `Typescript` `Recoil` `react-canvas-confetti` `colorful` `emotion` `immer` `vercel`
 
 ### 📺 Owner
 
