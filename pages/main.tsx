@@ -1,7 +1,7 @@
 import React from 'react';
 import SetConfetti from '@views/SetConfetti';
 
-const Index = () => {
+const Main = () => {
   return (
     <>
       <SetConfetti />
@@ -9,4 +9,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Main;

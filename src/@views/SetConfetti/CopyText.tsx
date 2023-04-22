@@ -24,7 +24,7 @@ const CopyText = ({ colors }: colorsT) => {
       <CodeCopyBox>
         <h1>개발팀에 아래 코드를 전달해 주세요.</h1>
         <pre>
-          {codes.map((item, idx) => (
+          {codes.map((item: string, idx: number) => (
             <p key={idx}>{item}</p>
           ))}
         </pre>

@@ -13,9 +13,11 @@ interface OptionBoxT {
   color: string;
   setColor: (item: string) => void;
   setImageItem: (item: string) => void;
+  setBgFull: any;
+  isBgFull: boolean;
 }
 
-const OptionBox = ({ color, setColor, setImageItem }: OptionBoxT) => {
+const OptionBox = ({ color, setColor, setImageItem, setBgFull, isBgFull }: OptionBoxT) => {
   const [isHeaderFontColor, setHeaderFontColor] = useRecoilState(headerFontColorAtom);
   const inputColorRef = useRef<HTMLInputElement>(null);
   const colorItemsRef = useRef<HTMLUListElement>(null);
@@ -24,6 +26,7 @@ const OptionBox = ({ color, setColor, setImageItem }: OptionBoxT) => {
   const [itemColors, setItemColors] = useState<string[]>([]);
   const [isAction, setAction] = useState<boolean>(false);
   const fileBoxRef = useRef<HTMLInputElement>(null);
+  const [bgImage, setBgImage] = useState<string>('');
   const handleColorChange = useCallback(
     (color: string) => {
       setColor(color);
@@ -47,9 +50,23 @@ const OptionBox = ({ color, setColor, setImageItem }: OptionBoxT) => {
     setColorSelectBoxView(false);
   };
   const imageSet = (imageItem: any) => {
-    const imageURL = imageItem.current;
-    console.log(imageURL);
-    setImageItem(imageURL);
+    const file = imageItem.current.files[0];
+    const reader = new FileReader();
+    try {
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        if (typeof reader.result === 'string') {
+          setBgImage(reader.result);
+          setImageItem(reader.result);
+        }
+      };
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const bgImageReset = () => {
+    setBgImage('');
+    setImageItem('');
   };
   useEffect(() => {
     handleColorChange('#ffffff');
@@ -93,11 +110,32 @@ const OptionBox = ({ color, setColor, setImageItem }: OptionBoxT) => {
           </dd>
           <dt>🖼 배경 이미지를 선택해 주세요</dt>
           <dd>
-            (개발중 입니다.)
-            {/* <input type="file" ref={fileBoxRef} />
-            <button type="button" onClick={() => imageSet(fileBoxRef)}>
-              체크
-            </button> */}
+            <ImageBoxGroup>
+              <input type="file" ref={fileBoxRef} accept="image/*" onChange={() => imageSet(fileBoxRef)} />
+              {bgImage !== '' ? (
+                <PreviewBox style={{ backgroundImage: `url(` + bgImage + `)` }}></PreviewBox>
+              ) : (
+                <ImageUploadBox>이미지 가져오기</ImageUploadBox>
+              )}
+            </ImageBoxGroup>
+            {bgImage !== '' ? (
+              <React.Fragment>
+                <BtnImageSize
+                  type="button"
+                  className={bgImage === '' ? `disabled` : ``}
+                  onClick={() => setBgFull(!isBgFull)}>
+                  배경Size
+                  <br />
+                  {isBgFull ? `원본` : `100%`}
+                </BtnImageSize>
+                <BtnImageReset
+                  type="button"
+                  onClick={() => bgImageReset()}
+                  className={bgImage === '' ? `disabled` : ``}>
+                  이미지 해제
+                </BtnImageReset>
+              </React.Fragment>
+            ) : null}
           </dd>
           <dt>🎉 꽃가루 색상 - 다중선택가능</dt>
           <dd>
@@ -302,7 +340,7 @@ const BtnScale = styled.button<{ fontColor: string }>`
 
 const BtnBlock = styled.button`
   display: block;
-  min-width: 26rem;
+  width: 100%;
   margin: 3rem auto 0;
   padding: 1.4rem;
   color: #fff;
@@ -362,4 +400,87 @@ const BtnSelect = styled.button`
   font-size: 1.2rem;
   color: #1a1a1a;
   background-color: #fff;
+`;
+
+const BtnImageReset = styled.button`
+  padding: 0 1rem;
+  height: 4.4rem;
+  color: #fff;
+  background-color: #e16161;
+  border-radius: 0.4rem;
+  transition: 0.3s;
+  flex-shrink: 0;
+  &.disabled {
+    background-color: #ddd;
+    &:hover {
+      background-color: #ddd;
+    }
+  }
+  &:hover {
+    background-color: #ca3c3c;
+  }
+`;
+
+const BtnImageSize = styled.button`
+  padding: 0 1rem;
+  height: 4.4rem;
+  color: #fff;
+  margin-right: 0.5rem;
+  background-color: #36f;
+  border-radius: 0.4rem;
+  transition: 0.3s;
+  flex-shrink: 0;
+  font-size: 1.2rem;
+  &.disabled {
+    background-color: #ddd;
+    &:hover {
+      background-color: #ddd;
+    }
+  }
+  &:hover {
+    background-color: #1c48d3;
+  }
+`;
+
+const ImageBoxGroup = styled.label`
+  flex: 1 auto;
+  position: relative;
+  cursor: pointer;
+  box-sizing: border-box;
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    z-index: 0;
+  }
+`;
+
+const PreviewBox = styled.div`
+  width: calc(100% - 1rem);
+  height: 4.4rem;
+  border: 0.1rem solid #eee;
+  border-radius: 0.4rem;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+`;
+
+const ImageUploadBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 4.4rem;
+  font-size: 1.4rem;
+  color: #fff;
+  background-color: #36f;
+  box-sizing: border-box;
+  border-radius: 0.4rem;
+  transition: 0.3s;
+  &:hover {
+    background-color: #1c48d3;
+  }
 `;

@@ -6,13 +6,25 @@ import GuideBox from './GuideBox';
 const SetConfettiBody = () => {
   const [color, setColor] = useState<string>('#ffffff');
   const [imageItem, setImageItem] = useState<string>('');
+  const [isBgFull, setBgFull] = useState<boolean>(false);
   useEffect(() => {
     console.log(imageItem);
   }, []);
   return (
     <>
-      <ContentsBody style={{ backgroundColor: color, backgroundImage: `url(` + imageItem + `)` }}>
-        <OptionBox color={color} setColor={setColor} setImageItem={setImageItem} />
+      <ContentsBody
+        style={{
+          backgroundColor: color,
+          backgroundImage: `url(` + imageItem + `)`,
+          backgroundSize: isBgFull ? `100% auto` : ``,
+        }}>
+        <OptionBox
+          color={color}
+          setColor={setColor}
+          setImageItem={setImageItem}
+          setBgFull={setBgFull}
+          isBgFull={isBgFull}
+        />
         <GuideBox />
       </ContentsBody>
     </>
@@ -26,4 +38,6 @@ const ContentsBody = styled.section`
   width: 100vw;
   height: 100vh;
   transition: 0.3s;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
 `;
