@@ -10,10 +10,19 @@ const GuideBox = () => {
     <>
       <GuideUI fontColor={headerColor}>
         <InfoText className={isDisplay ? `active` : ``}>
-          <p>1. 배경색을 선택해 주세요.</p>
-          <p>2. 색종이 색상을 선택해 주세요. (다중 선택 및 취소 가능)</p>
-          <p>3. 꽃가루 날리기 버튼을 눌러 배경색과 어울리는 색상을 지정하세요.</p>
-          <p>4. 하단 script를 개발팀에게 공유해 주세요.</p>
+          <h1>👨🏻‍💻 사용방법</h1>
+          <p>
+            1. <em>배경색을 선택</em>해 주세요.
+          </p>
+          <p>
+            2. <em>색종이 색상을 선택</em>해 주세요. (다중 선택 및 취소 가능)
+          </p>
+          <p>
+            3. <em>꽃가루 날리기 버튼을 클릭</em>해서 배경색과 어울리는 색상인지 확인하세요.
+          </p>
+          <p>
+            4. 하단 <em>script를 개발팀에게 공유</em>해 주세요.
+          </p>
         </InfoText>
         <BtnGuide type="button" onClick={() => setDisplay(!isDisplay)}>
           가이드
@@ -32,15 +41,29 @@ const GuideUI = styled.div<{ fontColor: string }>`
   justify-content: center;
   align-items: center;
   height: 100vh;
+  h1 {
+    padding-bottom: 1rem;
+    font-weight: 300;
+    font-size: 3rem;
+    color: ${(props) => props.fontColor};
+    transition: 0.3s;
+  }
   p {
     font-weight: 400;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+    color: #3a3a3a;
+    padding: 0.2rem 0;
     color: ${(props) => props.fontColor};
     line-height: 1.4;
+    transition: 0.3s;
+    em {
+      font-weight: 700;
+    }
   }
 `;
 
 const InfoText = styled.div`
+  padding-bottom: 3rem;
   opacity: 0;
   transition: 0.3s;
   &.active {
