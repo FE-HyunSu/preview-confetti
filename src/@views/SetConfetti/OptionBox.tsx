@@ -40,7 +40,7 @@ const OptionBox = ({ color, setColor, setImageItem, setBgFull, isBgFull }: Optio
     [color]
   );
   const ConfettiAction = (colors: string[]) => {
-    if (colors.length > 0) setAction(!isAction);
+    colors.length > 0 ? setAction(!isAction) : alert('꽃가루 색상을 1개 이상 지정해주세요.');
   };
   const removeColorItem = (idx: number) => {
     const colorGroups = produce(itemColors, (draft) => {
